@@ -7,6 +7,12 @@ projectModal();
 itemModal();
 /* Gives functionality to open/close add-to-do item modal and add project modal */
 
+function clearToDoHTML(){
+    document.querySelector("#to-do-items").innerHTML ="";
+}
+
+/* Clears to do Item section on screen */
+
 function projectDelete(identifier, projectsList){
     const projectDeleteBtn = document.querySelector(".project" + identifier)
     if(!projectDeleteBtn){
@@ -20,7 +26,7 @@ function projectDelete(identifier, projectsList){
         if(projectDom){
             projectContainer.removeChild(projectDom);
             projectsList.removeProject(identifier);
-            document.querySelector("#to-do-items").innerHTML ="";
+            clearToDoHTML();
             alert(projectsList.projectList.length + " projects left");
         } 
     })
@@ -44,7 +50,7 @@ function projectHighlight(project, projectsList){
 
         e.target.classList.add("highlighted");
         projectsList.currentProject = project;
-        document.querySelector("#to-do-items").innerHTML ="";
+        clearToDoHTML();
         if(e.target instanceof HTMLButtonElement){
             return;
         }else{
@@ -56,6 +62,7 @@ function projectHighlight(project, projectsList){
                     let date = item.dueDate;
                     let id = item.itemId;
                     createToDoDom(title, description, priority, date, id);
+                    itemDelete(id, projectsList.currentProject);
                 })
             }
         }
@@ -68,6 +75,7 @@ function projectHighlight(project, projectsList){
      */
     
 }
+
 
 
 const projectsList = new projectList();
@@ -143,9 +151,42 @@ submitItemBtn.addEventListener("click", (e) =>{
 })
 
 
+const prioritySortBtn = document.querySelector("#sort-priority");
+prioritySortBtn.addEventListener("click", () =>{
+    const sortedArray = [];
+    const length = projectsList.currentProject.todoList.length;
+    if (length > 0){
+        for(let i = 0; i<length; i++){
+            if (projectsList.currentProject.todoList[i].priority === "high"){
+                sortedArray.push(projectsList.currentProject.todoList[i])
+            }
+        }
+        for(let j = 0; j<length; j++){
+            if (projectsList.currentProject.todoList[j].priority === "moderate"){
+                sortedArray.push(projectsList.currentProject.todoList[j])
+            }
+        }
+        for(let k = 0; k<length; k++){
+            if (projectsList.currentProject.todoList[k].priority === "low"){
+                sortedArray.push(projectsList.currentProject.todoList[k])
+            }
+        }
+        clearToDoHTML();
+        sortedArray.forEach((item) =>{
+            let title = item.title;
+            let description = item.description;
+            let priority = item.priority;
+            let date = item.dueDate;
+            let id = item.itemId;
+            createToDoDom(title, description, priority, date, id);
+            itemDelete(id, projectsList.currentProject);
+        })
+           
+    }
+
+})
+
+
 
 /*
-1. Need to create functionality to delete project and then also delete all to do items
-then clear HTML from the to do items 
--This is where wonkiness happened last time
 */
