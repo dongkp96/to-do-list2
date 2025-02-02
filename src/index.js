@@ -15,4 +15,4 @@ Creates a project List object that contains an array that holds project objects 
 a default project for the user then adds it to the project List in the project List object. 
 */
 
-let currentProject = defaultProject;
+projectsList.currentProject = defaultProject;
