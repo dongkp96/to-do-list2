@@ -1,0 +1,73 @@
+de<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>To-Do-List2 KD</title>
+    <script defer src="main.js"></script></head>
+    <body>
+        <main>
+            <!--Project List and NAv-->
+            <div id="project-list">
+                <div id="profile">
+                    <h1>Hello Kevin</h1>
+                </div>
+                <div id="project-function">
+                    <h1>Project List</h1>
+                    <button type="generic" id="add-project">Add Project</button>
+                </div>
+                <hr>
+                <div id="projects-container">
+                </div>
+            </div>
+
+            <!--Right side for To-do items including buttons-->
+            <div id="to-do">
+                <div id="to-do-nav">
+                    <button type="generic" id="add-item">Add To-do item</button>
+                    <button type="generic">Sort by date</button>
+                    <button type="generic">Sort by priority</button>
+                </div>
+                <div id="to-do-items">
+                </div>
+            </div>
+        </main>
+
+
+
+        <!--Dialog box section-->
+        <dialog id="project-creator">
+            <form>
+                <label for="project-name">Project Name:</label>
+                <input id ="project-name" type="text">
+                <button type="submit" id="submit">Add</button>
+                <button type="generic" id="close" formmethod ="dialog">Close</button>
+            </form>
+        </dialog>
+
+        <dialog id="item-creator">
+            <form>
+                <div>
+                    <label for="task-name">Project Name:</label>
+                    <input id ="task-name" type="text">
+                </div>
+                <div>
+                    <label for="task-description">Description:</label>
+                    <textarea name="description" id="task-description" cols="25" rows="3"></textarea>
+                </div>
+                <label for="task-priority">Priority</label>
+                <select name="priority" id="task-priority">
+                    <option value="low">Low</option>
+                    <option value="moderate">Moderate</option>
+                    <option value="high">High</option>
+                </select>
+                <label for="task-duedate">Due Date:</label>
+                <input id="task-duedate"type="date">
+                <div>
+                    <button type="generic" id="submit-item">Add To-do item</button>
+                    <button type="generic" formmethod="dialog" id="close2">Close</button>
+                </div>
+            </form>
+        </dialog>
+    </body>
+</html>
