@@ -31,6 +31,7 @@ export class projectList{
 
 
 
+
     
 }
 
@@ -59,6 +60,10 @@ export class project{
 
     removeItem(ID){
         this.todoList = this.todoList.filter(todo => todo.itemId !== ID)
+    }
+
+    emptyList(){
+        this.todoList = [];
     }
 
 }

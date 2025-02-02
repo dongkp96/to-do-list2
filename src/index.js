@@ -20,9 +20,11 @@ function projectDelete(identifier, projectsList){
         if(projectDom){
             projectContainer.removeChild(projectDom);
             projectsList.removeProject(identifier);
-            alert(projectsList.projectList.length + " projects");
+            document.querySelector("#to-do-items").innerHTML ="";
+            alert(projectsList.projectList.length + " projects left");
         } 
     })
+
 
     /*
     Function to add delete button functionality to project DOMs to avoid repetition.
@@ -42,6 +44,21 @@ function projectHighlight(project, projectsList){
 
         e.target.classList.add("highlighted");
         projectsList.currentProject = project;
+        document.querySelector("#to-do-items").innerHTML ="";
+        if(e.target instanceof HTMLButtonElement){
+            return;
+        }else{
+            if (project.todoList.length > 0){
+                project.todoList.forEach((item) =>{
+                    let title = item.title;
+                    let description = item.description;
+                    let priority = item.priority;
+                    let date = item.dueDate;
+                    let id = item.itemId;
+                    createToDoDom(title, description, priority, date, id);
+                })
+            }
+        }
     })
 
     /*
