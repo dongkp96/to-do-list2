@@ -22,8 +22,9 @@ export class projectList{
         /*Getter used to access the project Id value */
     }
 
-    set CurrentProject(project){
-        this.currentProject = project;
+
+    removeProject(identifier){
+        this.projectList = this.projectList.filter(project => project.identifier !== identifier);
     }
 
 
@@ -49,6 +50,7 @@ export class project{
         this.todoList.push(todoItem);
         /*Used to add a todoItem object into the list */
     }
+
 }
 
 export function createProjectDom(projectName, IDnumber){
