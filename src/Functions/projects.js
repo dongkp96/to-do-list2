@@ -38,6 +38,7 @@ export class project{
     constructor(name, identifier){
         this.name = name;
         this.identifier = identifier;
+        this.itemId = 0;
         this.todoList= [];
         /*
         Project name is a string, identifier could be index number in
@@ -49,6 +50,15 @@ export class project{
     addItem(todoItem){
         this.todoList.push(todoItem);
         /*Used to add a todoItem object into the list */
+        this.itemId ++;
+    }
+
+    retrieveItemIdCounter(){
+        return this.itemId;
+    }
+
+    removeItem(ID){
+        this.todoList = this.todoList.filter(todo => todo.itemId !== ID)
     }
 
 }
