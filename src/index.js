@@ -127,3 +127,8 @@ submitItemBtn.addEventListener("click", (e) =>{
 
 
 
+/*
+1. Need to create functionality to delete project and then also delete all to do items
+then clear HTML from the to do items 
+-This is where wonkiness happened last time
+*/
