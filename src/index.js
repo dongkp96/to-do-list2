@@ -152,6 +152,31 @@ submitItemBtn.addEventListener("click", (e) =>{
     /*Resets input areas in the item-creator modal */
 })
 
+const dateSortBtn = document.querySelector("#sort-date");
+dateSortBtn.addEventListener("click", (e)=>{
+    e.preventDefault();
+    const sortedArray = [];
+    const length = projectsList.currentProject.todoList.length;
+    if(length >0){
+        let sortedItems = projectsList.currentProject.todoList.slice().sort((a,b)=> new Date(a.dueDate) - new Date(b.dueDate));
+        for (let item of sortedItems){
+            sortedArray.push(item);
+        }
+        clearToDoHTML();
+        sortedArray.forEach((item) =>{
+            let title = item.title;
+            let description = item.description;
+            let priority = item.priority;
+            let date = item.dueDate;
+            let id = item.itemId;
+            createToDoDom(title, description, priority, date, id);
+            itemDelete(id, projectsList.currentProject);
+            itemEdit(id, projectsList.currentProject);
+        })
+        
+    }
+    
+})
 
 const prioritySortBtn = document.querySelector("#sort-priority");
 prioritySortBtn.addEventListener("click", () =>{
@@ -188,6 +213,7 @@ prioritySortBtn.addEventListener("click", () =>{
     }
 
 })
+
 
 const submitEditBtn = document.querySelector("#edit-item-submit");
 submitEditBtn.addEventListener("click", (e)=>{
