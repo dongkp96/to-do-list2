@@ -26,6 +26,12 @@ export function itemModal(){
         createItemDialog.close();
     })
 
+    const editItemDialog = document.querySelector("#item-editor");
+    const closeItemEditBtn = document.querySelector("#close3");
+    closeItemEditBtn.addEventListener("click", ()=>{
+        editItemDialog.close();
+    })
+
     /*Gives opening and closing function for the add to-do-item button */
 }
 

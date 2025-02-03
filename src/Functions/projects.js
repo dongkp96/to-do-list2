@@ -41,6 +41,7 @@ export class project{
         this.identifier = identifier;
         this.itemId = 0;
         this.todoList= [];
+        this.currentItem ="";
         /*
         Project name is a string, identifier could be index number in
         projectList array (this could be length of array etc)
@@ -64,6 +65,14 @@ export class project{
 
     emptyList(){
         this.todoList = [];
+    }
+
+    retrieveItem(id){
+        for (let i = 0; i < this.todoList.length; i++){
+            if(this.todoList[i].itemId === id){
+                return this.todoList[i];
+            }
+        }
     }
 
 }

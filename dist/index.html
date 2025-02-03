@@ -69,5 +69,30 @@ de<!DOCTYPE html>
                 </div>
             </form>
         </dialog>
+
+        <dialog id="item-editor">
+            <form >
+                <div>
+                    <label for="edit-name">Project Name:</label>
+                    <input id ="edit-name" type="text">
+                </div>
+                <div>
+                    <label for="edit-description">Description:</label>
+                    <textarea name="description" id="edit-description" cols="25" rows="3"></textarea>
+                </div>
+                <label for="edit-priority">Priority</label>
+                <select name="priority" id="edit-priority">
+                    <option value="low">Low</option>
+                    <option value="moderate">Moderate</option>
+                    <option value="high">High</option>
+                </select>
+                <label for="edit-duedate">Due Date:</label>
+                <input id="edit-duedate"type="date">
+                <div>
+                    <button type="generic" id="edit-item-submit">Submit</button>
+                    <button type="generic" formmethod="dialog" id="close3">Close</button>
+                </div>
+            </form>
+        </dialog>
     </body>
 </html>

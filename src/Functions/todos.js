@@ -18,18 +18,22 @@ export function createToDoDom(title, description, priority, date, itemId){
 
     const itemTitle = document.createElement("h3");
     itemTitle.textContent = title;
+    itemTitle.setAttribute("class", "title");
     todoCard.appendChild(itemTitle);
 
     const itemDescription = document.createElement("p");
     itemDescription.textContent = description;
+    itemDescription.setAttribute("class", "description");
     todoCard.appendChild(itemDescription);
 
     const itemPriority = document.createElement("p");
     itemPriority.textContent = priority;
+    itemPriority.setAttribute("class", "priority");
     todoCard.appendChild(itemPriority);
 
     const itemDate = document.createElement("p");
-    itemDescription.textContent = date;
+    itemDate.textContent = date;
+    itemDate.setAttribute("class", "date");
     todoCard.appendChild(itemDate);
 
     const itemBtnHolder = document.createElement("div");
@@ -83,3 +87,28 @@ export function itemDelete(itemId, project){
 
 }
 
+export function itemEdit(itemId, project){
+    const itemEditBtn = document.querySelector(".edit.item" +itemId);
+    if(!itemEditBtn){
+        return;
+    }
+
+    itemEditBtn.addEventListener("click", (e) =>{
+        e.preventDefault();
+        const itemEditorDialog = document.querySelector("#item-editor");
+        itemEditorDialog.showModal();
+        const currentItem = project.retrieveItem(itemId);
+        document.querySelector("#edit-name").value = currentItem.title;
+        document.querySelector("#edit-description").value = currentItem.description;
+        document.querySelector("#edit-priority").value = currentItem.priority;
+        document.querySelector("#edit-dueDate").value = currentItem.dueDate;
+        project.currentItem = currentItem;
+
+      /*
+      Adds eventListener that opens the edit items dialog and then fills in its input fields with values
+      from the todo item object that is currently being selected
+      */
+    })
+
+
+}

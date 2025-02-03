@@ -1,7 +1,7 @@
 import "./styles.css";
 import {projectModal, itemModal} from "./Functions/modals.js";
 import {projectList, project, createProjectDom} from "./Functions/projects.js";
-import {todoItem, createToDoDom, itemDelete} from "./Functions/todos.js";
+import {todoItem, createToDoDom, itemDelete, itemEdit} from "./Functions/todos.js";
 
 projectModal();
 itemModal();
@@ -63,6 +63,7 @@ function projectHighlight(project, projectsList){
                     let id = item.itemId;
                     createToDoDom(title, description, priority, date, id);
                     itemDelete(id, projectsList.currentProject);
+                    itemEdit(id, projectsList.currentProject);
                 })
             }
         }
@@ -136,6 +137,7 @@ submitItemBtn.addEventListener("click", (e) =>{
     projectsList.currentProject.addItem(newToDo);
     createToDoDom(title, description, priority, date, newToDo.itemId);
     itemDelete(newToDo.itemId, projectsList.currentProject);
+    itemEdit(newToDo.itemId, projectsList.currentProject);
 
 
     /*Adds functionality to the add to do item modal  */
@@ -180,11 +182,50 @@ prioritySortBtn.addEventListener("click", () =>{
             let id = item.itemId;
             createToDoDom(title, description, priority, date, id);
             itemDelete(id, projectsList.currentProject);
+            itemEdit(id, projectsList.currentProject);
         })
            
     }
 
 })
+
+const submitEditBtn = document.querySelector("#edit-item-submit");
+submitEditBtn.addEventListener("click", (e)=>{
+    e.preventDefault();
+    const itemEditorDialog = document.querySelector("#item-editor");
+    const editedTitle = document.querySelector("#edit-name").value;;
+    const editedDescription = document.querySelector("#edit-description").value;
+    const editedPriority = document.querySelector("#edit-priority").value;
+    const editedDate = document.querySelector("#edit-dueDate").value;
+    const currentProject = projectsList.currentProject;
+    const currentItem = currentProject.currentItem;
+    currentItem.title = editedTitle;
+    currentItem.description = editedDescription;
+    currentItem.priority = editedPriority;
+    currentItem.dueDate = editedDate;
+    /*
+    This portion manipulates the values inside the todo item by setting them to the respective 
+    values that was entered by the user 
+     */
+
+    const htmlIDselector = "#item" +currentItem.itemId;
+
+    document.querySelector(htmlIDselector + " > .title").textContent = editedTitle;
+    document.querySelector(htmlIDselector + " > .description").textContent = editedDescription;
+    document.querySelector(htmlIDselector + " > .priority").textContent = editedPriority;
+    document.querySelector(htmlIDselector + " > .date").textContent = editedDate;
+    
+    /*
+    his portion of code replaces the values of the respective parts of the item DOM once 
+    the submit button has been clicked
+    */
+
+
+
+    itemEditorDialog.close();
+    
+})
+
 
 
 
